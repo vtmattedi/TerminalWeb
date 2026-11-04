@@ -17,7 +17,7 @@ The browser host uses React and xterm.js to display and interact with terminal a
 
 Browser keyboard events are normalized at the input boundary into application-level commands instead of being interpreted directly by the renderers. ANSI-aware formatting allows terminal text to be aligned, wrapped, and cropped without counting escape sequences as visible characters.
 
-Terminal Engine is not yet an independently published package; its implementation remains coupled to the application source trees. The underlying applications are maintained separately in [Console Adventure](https://github.com/vtmattedi/ConsoleAdventure) and [RTSim](https://github.com/vtmattedi/RTSim). This repository owns their browser integration rather than their game or simulation logic. For additional architectural context, see the [Terminal Engine entry in the personal-site source](https://github.com/vtmattedi/personal-site/blob/main/src/content/briefs.ts).
+Terminal Engine is not yet an independently published package; its implementation remains coupled to the application source trees. The underlying applications are maintained separately in [Console Adventure](https://github.com/vtmattedi/ConsoleAdventure) and [RTSim](https://github.com/vtmattedi/RTSim). This repository owns their browser integration rather than their game or simulation logic. For a public overview of the project, see the [MattediWorks portfolio](https://vitor.mattediworks.com/).
 
 ## Routes
 
