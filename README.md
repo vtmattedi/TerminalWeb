@@ -11,6 +11,14 @@ The current public terminal apps are:
 
 The underlying console abstraction work is tracked as the **Terminal Engine** project. See [docs/terminal-engine.md](docs/terminal-engine.md) for the current boundary: a `BasicConsole`-style class owns write, clear, cursor, width, color, and layout helpers while host adapters bind that surface to Node, xterm.js, or tests.
 
+## Terminal Engine Architecture
+
+The browser host uses React and xterm.js to display and interact with terminal applications. The shared console abstraction is centered on a `BasicConsole`-style API for writing output, clearing screens, controlling the cursor, measuring terminal dimensions, and applying ANSI-aware color and text-layout helpers. Host-specific adapters can connect that interface to Node.js terminals, xterm.js, or test harnesses without requiring the rendering code to depend on the host.
+
+Browser keyboard events are normalized at the input boundary into application-level commands instead of being interpreted directly by the renderers. ANSI-aware formatting allows terminal text to be aligned, wrapped, and cropped without counting escape sequences as visible characters.
+
+Terminal Engine is not yet an independently published package; its implementation remains coupled to the application source trees. The underlying applications are maintained separately in [Console Adventure](https://github.com/vtmattedi/ConsoleAdventure) and [RTSim](https://github.com/vtmattedi/RTSim). This repository owns their browser integration rather than their game or simulation logic. For additional architectural context, see the [Terminal Engine entry in the personal-site source](https://github.com/vtmattedi/personal-site/blob/main/src/content/briefs.ts).
+
 ## Routes
 
 - `/`: MattediWorks-branded app catalog.
