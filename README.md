@@ -2,8 +2,7 @@
 
 A browser host for terminal applications built around a shared console abstraction.
 The goal is to let applications render through the same console interface in a
-Node.js terminal, in the browser through [xterm.js](https://xtermjs.org/), or
-in tests, without rewriting their screen-rendering logic.
+Node.js terminal, in the browser through [xterm.js](https://xtermjs.org/) without rewriting their screen-rendering logic.
 
 **Live application:** https://terminal.mattediworks.com
 
