@@ -1,0 +1,281 @@
+.terminal-project-page {
+  width: min(1160px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 14px;
+}
+
+.terminal-project-page--play {
+  width: min(1480px, 100%);
+}
+
+.terminal-project-page__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  align-items: start;
+  gap: 12px;
+  padding-bottom: 6px;
+}
+
+.terminal-project-page__summary {
+  min-width: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.terminal-project-page__kicker {
+  color: var(--brand-orange);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.terminal-project-page__summary h1 {
+  margin: 0;
+  color: var(--app-text);
+  font-family: var(--font-brand);
+  font-size: 3.1rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.04;
+}
+
+.terminal-project-page__summary p {
+  max-width: 58rem;
+  margin: 0;
+  color: var(--app-muted);
+  font-size: 1.03rem;
+  line-height: 1.5;
+}
+
+.terminal-project-page__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.terminal-project-page__tags li {
+  min-height: 30px;
+  padding: 5px 9px;
+  border: 1px solid var(--app-border);
+  border-radius: 6px;
+  color: var(--app-text);
+  background: rgba(107, 199, 216, 0.08);
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.86rem;
+  line-height: 1.15;
+}
+
+.terminal-project-page__actions {
+  max-width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.terminal-project-page__theatre-toggle {
+  width: 42px;
+  min-width: 42px;
+  height: 42px;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  color: var(--app-muted);
+  background: var(--control-bg);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  transition: border-color 160ms ease, background 160ms ease, color 160ms ease, transform 160ms ease;
+}
+
+.terminal-project-page__theatre-toggle:hover,
+.terminal-project-page__theatre-toggle:focus-visible,
+.terminal-project-page__theatre-toggle[aria-pressed='true'] {
+  border-color: var(--brand-cyan);
+  color: var(--app-text);
+  background: rgba(107, 199, 216, 0.14);
+}
+
+.terminal-project-page__theatre-toggle:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.terminal-project-page__source {
+  max-width: 100%;
+  min-height: 42px;
+  border: 1px solid var(--app-border);
+  border-radius: 8px;
+  padding: 0 12px;
+  color: var(--link-color);
+  background: var(--control-bg);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.terminal-project-page__source:hover,
+.terminal-project-page__source:focus-visible {
+  border-color: var(--brand-cyan);
+  background: rgba(107, 199, 216, 0.14);
+}
+
+.terminal-project-page__source:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.terminal-project-page__tabs {
+  box-sizing: border-box;
+  width: max-content;
+  max-width: 100%;
+  align-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--app-border);
+  border-radius: 999px;
+  background: var(--control-bg);
+}
+
+.terminal-project-page__tabs button {
+  min-width: 92px;
+  height: 34px;
+  border: 0;
+  border-radius: 999px;
+  color: var(--app-muted);
+  background: transparent;
+  display: inline-grid;
+  place-items: center;
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0;
+  cursor: pointer;
+  transition: background 160ms ease, box-shadow 160ms ease, color 160ms ease;
+}
+
+.terminal-project-page__tabs button:hover,
+.terminal-project-page__tabs button[aria-selected='true'] {
+  color: #101317;
+  background: var(--brand-orange);
+}
+
+.terminal-project-page__tabs button[aria-selected='true'] {
+  box-shadow: 0 0 22px rgba(255, 152, 73, 0.28);
+}
+
+.terminal-project-page__tabs button:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+:root[data-theme='dark'] .terminal-project-page__tabs button[aria-selected='true'] {
+  color: #0c1428;
+}
+
+.terminal-project-page__overview,
+.terminal-project-page__play {
+  min-width: 0;
+}
+
+.terminal-project-page__stage {
+  width: 100%;
+  height: min(76vh, 820px);
+  min-height: 600px;
+  display: grid;
+  justify-items: center;
+}
+
+.terminal-project-page--theatre .terminal-project-page__stage {
+  position: relative;
+  z-index: 80;
+  isolation: isolate;
+}
+
+.terminal-project-page--theatre .terminal-project-page__stage::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 10px;
+  box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.72);
+  pointer-events: none;
+}
+
+.terminal-project-page--play .terminal-project-page__header {
+  align-items: center;
+}
+
+.terminal-project-page--play .terminal-project-page__tabs {
+  align-self: center;
+}
+
+.terminal-project-page--play .terminal-project-page__summary {
+  gap: 4px;
+}
+
+.terminal-project-page--play .terminal-project-page__summary h1 {
+  font-size: clamp(1.7rem, 3.2vw, 2.45rem);
+}
+
+.terminal-project-page--play .terminal-project-page__stage {
+  height: calc(100vh - 132px);
+  min-height: 560px;
+}
+
+@media screen and (max-width: 760px) {
+  .terminal-project-page {
+    gap: 16px;
+  }
+
+  .terminal-project-page__header {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .terminal-project-page__summary h1 {
+    font-size: 2.35rem;
+  }
+
+  .terminal-project-page__actions {
+    justify-self: start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .terminal-project-page__tabs {
+    width: 100%;
+    order: 2;
+  }
+
+  .terminal-project-page__tabs button {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .terminal-project-page__actions {
+    order: 3;
+  }
+
+  .terminal-project-page__stage {
+    min-height: 420px;
+  }
+
+  .terminal-project-page--play .terminal-project-page__stage {
+    height: min(68vh, 711px);
+    min-height: 420px;
+  }
+}

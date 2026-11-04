@@ -2,6 +2,15 @@
     display: flex;
     margin: auto;
     align-items: center;
+    position: relative;
+    top: 0;
+    text-align: center;
+    transition: flex-direction 160ms ease;
+}
+
+.m_headerDiv--stacked {
+    flex-direction: column;
+    position: sticky;
 }
 
 .m_titleDiv {
@@ -13,41 +22,64 @@
 }
 
 .m_title {
-    font-size: 3em;
-    color: #eee;
+    font-size: 3rem;
+    color: var(--app-text);
     position: relative;
-    font-family: "Homenaje", sans-serif;
-    font-weight: 400;
+    font-family: var(--font-brand);
+    font-weight: 700;
     font-style: normal;
-    text-shadow: #000 0px 0px 10px;
+    text-shadow: var(--title-shadow) 0px 0px 10px;
 }
 
 .m_image {
     border-radius: 50%;
-    left: 10%;
+    display: block;
+    object-fit: contain;
+    background: var(--brand-panel-bg);
     padding: 5px;
     width: 100px;
     height: 100px;
+}
+
+.m_img_c {
+    width: min(20vw, 140px);
+    min-width: 84px;
+    height: 120px;
+    display: grid;
+    place-items: center;
+    visibility: visible;
+}
+
+.m_img_c--hidden {
+    visibility: hidden;
 }
 
 .m_card {
     top: 10px;
     justify-content: center;
     align-items: center;
-    align-items: center;
-    background-color: #272727;
+    background-color: var(--app-surface-strong);
     opacity: 0.9;
     display: none;
     position: absolute;
     z-index: 1;
-    border-radius: 10px;
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
     visibility: visible;
-    box-shadow: 0px 0px 10px 5px #111;
+    box-shadow: 0 12px 28px var(--app-shadow);
+}
+
+.m_card--visible {
+    display: flex;
+}
+
+.m_card--centered {
+    margin: auto;
 }
 
 .m_cardText {
-    color: #fff;
-    font-family: "Inter", sans-serif;
+    color: var(--app-text);
+    font-family: var(--font-body);
     font-size: 1.5em;
     padding: 5px;
 }
@@ -64,6 +96,6 @@
     transform: scale(1.1);
     transition: all 0.3s ease-in-out;
     cursor: pointer;
-    box-shadow: 1px 1px 10px 1px #bababa;
+    box-shadow: 1px 1px 10px 1px var(--app-shadow);
 
 }

@@ -1,0 +1,78 @@
+.theme-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid rgba(16, 19, 23, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 250, 242, 0.72);
+  box-shadow: 0 14px 38px rgba(16, 19, 23, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.theme-selector__option,
+.theme-selector__compact {
+  width: 30px;
+  height: 30px;
+  border: 0;
+  border-radius: 999px;
+  color: #4d5055;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 180ms ease, box-shadow 180ms ease, color 180ms ease;
+}
+
+.theme-selector__option:hover,
+.theme-selector__compact:hover {
+  color: #101317;
+  background: rgba(255, 152, 73, 0.18);
+}
+
+.theme-selector__option--active {
+  color: #101317;
+  background: var(--brand-orange);
+  box-shadow: 0 0 22px rgba(255, 152, 73, 0.28);
+}
+
+.theme-selector__compact {
+  border: 1px solid rgba(16, 19, 23, 0.12);
+  background: rgba(255, 250, 242, 0.72);
+  box-shadow: 0 14px 38px rgba(16, 19, 23, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.theme-selector__option:focus-visible,
+.theme-selector__compact:focus-visible {
+  outline: 3px solid rgba(48, 231, 255, 0.48);
+  outline-offset: 2px;
+}
+
+:root[data-theme='dark'] .theme-selector {
+  border-color: rgba(255, 250, 242, 0.12);
+  background: rgba(16, 19, 23, 0.68);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.26);
+}
+
+:root[data-theme='dark'] .theme-selector__option,
+:root[data-theme='dark'] .theme-selector__compact {
+  color: #c6c0b6;
+}
+
+:root[data-theme='dark'] .theme-selector__option:hover,
+:root[data-theme='dark'] .theme-selector__compact:hover {
+  color: #f8f0e5;
+  background: rgba(255, 152, 73, 0.18);
+}
+
+:root[data-theme='dark'] .theme-selector__option--active {
+  color: #0c1428;
+}
+
+:root[data-theme='dark'] .theme-selector__compact {
+  border-color: rgba(255, 250, 242, 0.12);
+  background: rgba(16, 19, 23, 0.68);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.26);
+}

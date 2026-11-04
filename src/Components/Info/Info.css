@@ -1,34 +1,69 @@
-
-.noSize
-{
-    margin: 5%;
-    text-align: center;
-    font-size: 1.5em;
-    font-family: "Inter", sans-serif;
-    color: #ccc;
-    background-color: #555;
-    box-shadow: 0px 0px 10px 5px #111;
-    border-radius: 10px;
-    padding: 5%;
+.info-panel {
+    width: min(100%, 1120px);
+    display: grid;
+    gap: 16px;
 }
 
-.noSizeDescription
-{
-    margin: 5%;
-    text-align: left;
-    font-size: 1.3em;
-    font-family: "Inter", sans-serif;
-    color: #ccc;
-    background-color: #555;
-    border-radius: 2%;
-    padding: 5%;
+.info-panel__copy {
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
+    padding: 22px;
+    color: var(--app-muted);
+    background-color: var(--app-surface);
+    box-shadow: 0 12px 28px var(--app-shadow);
+    display: grid;
+    gap: 10px;
 }
 
-.imageList
-{
+.info-panel__warning,
+.info-panel__description {
+    margin: 0;
+    font-family: var(--font-body);
+    line-height: 1.5;
+}
+
+.info-panel__warning {
+    color: var(--app-text);
+    font-size: 1.18rem;
+    font-weight: 700;
+}
+
+.info-panel__description {
+    color: var(--app-muted);
+    font-size: 1rem;
+}
+
+.info-panel__screenshots {
     display: flex;
     width: 100%;
-    padding: 5%;
-    flex-direction: row;
-    overflow-x: scroll;
+    gap: 14px;
+    padding: 6px 0 10px;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+}
+
+.info-panel__screenshot {
+    flex: 0 0 min(82vw, 520px);
+    width: min(82vw, 520px);
+    aspect-ratio: 16 / 10;
+    display: block;
+    object-fit: cover;
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
+    background: var(--terminal-frame);
+    scroll-snap-align: start;
+}
+
+@media screen and (max-width: 620px) {
+    .info-panel {
+        gap: 12px;
+    }
+
+    .info-panel__copy {
+        padding: 16px;
+    }
+
+    .info-panel__warning {
+        font-size: 1.05rem;
+    }
 }

@@ -1,0 +1,133 @@
+.overlay {
+  --mw-loading-orange: var(--brand-orange, #ff9849);
+  --mw-loading-ink: #090a0a;
+  --mw-loading-copy: rgba(248, 240, 229, 0.72);
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  color: var(--mw-loading-copy);
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 152, 73, 0.17), transparent 28%),
+    rgba(10, 12, 15, 0.74);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease;
+}
+
+.overlayVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.content {
+  display: grid;
+  justify-items: center;
+  gap: clamp(22px, 4vw, 38px);
+  width: min(680px, 88vw);
+}
+
+.logo {
+  width: min(560px, 82vw);
+  color: var(--mw-loading-orange);
+  filter: drop-shadow(0 22px 42px rgba(0, 0, 0, 0.34));
+  opacity: 0;
+  transform-origin: center;
+  transform-style: preserve-3d;
+  will-change: filter, opacity, transform;
+}
+
+.logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.logo svg path {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.status {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  color: var(--mw-loading-copy);
+  font-family: var(--font-brand, system-ui, sans-serif);
+  font-size: clamp(0.86rem, 1.6vw, 1rem);
+  font-weight: 800;
+  letter-spacing: 0;
+  opacity: 0.76;
+  animation: mw-loading-status-pulse 1.4s ease-in-out infinite;
+}
+
+.status svg {
+  width: 24px;
+  height: 24px;
+  color: var(--mw-loading-orange);
+  animation: mw-loading-spin 1.05s linear infinite;
+}
+
+:global(.dark) .overlay {
+  --mw-loading-ink: #f8f0e5;
+  --mw-loading-copy: rgba(248, 240, 229, 0.7);
+  background:
+    radial-gradient(circle at 50% 38%, rgba(255, 152, 73, 0.19), transparent 28%),
+    rgba(0, 0, 0, 0.82);
+}
+
+@media (max-width: 620px) {
+  .content {
+    gap: 24px;
+  }
+
+  .logo {
+    width: min(420px, 88vw);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay {
+    transition-duration: 1ms;
+  }
+
+  .logo {
+    opacity: 1;
+    transform: none;
+  }
+
+  .logo svg path {
+    fill: var(--mw-loading-orange);
+    stroke-width: 0;
+    stroke-dashoffset: 0;
+  }
+
+  .logo svg path:not(:global(.cls-1)) {
+    fill: var(--mw-loading-ink);
+  }
+
+  .status,
+  .status svg {
+    animation: none;
+  }
+}
+
+@keyframes mw-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes mw-loading-status-pulse {
+  0%,
+  100% {
+    opacity: 0.46;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}

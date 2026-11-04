@@ -6,16 +6,17 @@
 .terminalDiv {
     overflow-y: hidden;
     overflow-x: hidden;
-    box-shadow: 0px 0px 10px 5px #000000;
-    width: 90vw;
-    height: 711px;
+    background: var(--terminal-frame);
+    border: 1px solid var(--app-border);
+    border-radius: 8px;
+    box-shadow: 0 18px 34px var(--terminal-frame-shadow);
+    width: min(100%, 1120px);
+    height: 100%;
+    min-height: 0;
     display: flex;
-    justify-items: center;
+    justify-content: center;
     flex-direction: column;
-    margin-top: 2vh;
-    margin-bottom: 2vh;
-
-
+    margin: 0 auto;
 }
 
 .terminal {

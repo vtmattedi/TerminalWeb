@@ -1,0 +1,29 @@
+.mw-logo {
+  --mw-logo-accent: var(--brand-orange, #ff9849);
+  --mw-logo-ink: #101317;
+  display: block;
+  color: var(--mw-logo-accent);
+}
+
+:root[data-theme='dark'] .mw-logo {
+  --mw-logo-ink: #f8f0e5;
+}
+
+:root[data-theme='light'] .mw-logo {
+  --mw-logo-ink: #101317;
+}
+
+.mw-logo svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.mw-logo svg path {
+  fill: var(--mw-logo-ink);
+}
+
+.mw-logo svg path.cls-1 {
+  fill: var(--mw-logo-accent);
+}

@@ -1,26 +1,14 @@
-import React from 'react';
 import RTSim from './Components/RTSimWeb/rtsim';
-import H from './h';
+import TerminalProjectPage from './Components/TerminalProjectPage/TerminalProjectPage';
+import { getLocalizedProject, projectIds } from './content/projects';
+import { useI18n } from './MattediWorks/hooks/useI18n';
 const Rtsim = () => {
+    const { t } = useI18n();
+    const project = getLocalizedProject(projectIds.rtsim, t);
     return (
-
-        <div className='ca-title'
-            style={{
-                marginTop: '2vh',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                overflowX: 'hidden'
-            }}>
-            <h3>RTSim</h3>
+        <TerminalProjectPage project={project} labels={t.terminalPage}>
             <RTSim />
-
-            <div className='github-link'>
-                    <span className='bi bi-github' ></span>/vtmattedi/rtsim
-                
-            </div>
-            <H />
-        </div>
+        </TerminalProjectPage>
     );
 };
 

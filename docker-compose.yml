@@ -1,0 +1,9 @@
+services:
+  terminal-applications:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: terminal-applications:latest
+    restart: unless-stopped
+    expose:
+      - "80"

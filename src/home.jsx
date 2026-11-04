@@ -1,167 +1,136 @@
-import React from 'react';
-import Header from './Components/Header/Header';
 import { useNavigate } from 'react-router-dom';
-import pic from './Frontphoto.png';
+import { getLocalizedProject, getLocalizedProjects, projectIds, terminalProjectIds } from './content/projects';
+import MattediWorksLogo from './MattediWorks/Components/MattediWorksLogo';
+import { useI18n } from './MattediWorks/hooks/useI18n';
+
 const Home = () => {
     const nav = useNavigate();
-    const [hover, setHover] = React.useState("");
-    const [width, setWidth] = React.useState(window.innerWidth);
-    const mEnter = (e) => {
-        setHover(e.target.id);
-    }
-    const mLeave = () => {
-        setHover("");
-    }
-
-    const getDescription = (id) => {
-        switch (id) {
-            case 'ca':
-                return 'Turn based RPG game, where you can explore a world full of adventures and challenges.';
-            case 'rs':
-                return 'Discrete time preemptive scheduler simulator, where you can see the inner workings of many scheduler algorithms.';
-            default:
-                return '';
-        }
-    };
-
-    React.useEffect(() => {
-        const handleResize = () => {
-            setWidth(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+    const { t } = useI18n();
+    const engineProject = getLocalizedProject(projectIds.terminalEngine, t);
+    const terminalProjects = getLocalizedProjects(terminalProjectIds, t);
+    const socialLinks = [
+        {
+            href: 'https://github.com/vtmattedi',
+            label: t.home.footerGithub,
+            iconClass: 'bi bi-github',
+        },
+        {
+            href: 'https://www.linkedin.com/in/vitor-mattedi-dev',
+            label: t.home.footerLinkedIn,
+            iconClass: 'bi bi-linkedin',
+        },
+        {
+            href: 'https://wa.me/5571993152789',
+            label: t.home.footerWhatsApp,
+            iconClass: 'bi bi-whatsapp',
+        },
+    ];
 
     return (
-        <div>
-            {
-                width > 768 ?
-                    <Header title={'Terminal Applications'} /> :
-                    <div className='ca-title'>
-                        <h3>Terminal Applications</h3>
-                    </div>
-
-            }
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    overflowX: 'hidden',
-                    color: 'white',
-                    fontSize: '1.2em',
-                    margin: '2vh 2vw',
-                    textAlign: 'center',
-                }}>
-                These are some apps developped for node.js, that run on any terminal. such as xterm.js.
-            </div>
-            <div className='home-container'>
-                <button
-                    id={'ca'}
-                    onMouseEnter={mEnter}
-                    onMouseLeave={mLeave} onClick={
-                        () => {
-                            nav('/game');
-                        }
-                    }>
-                    Play Console Adventure
-                    <span className='bi bi-play'></span>
-                </button>
-
-                <button
-                    id={'rs'}
-                    onMouseEnter={mEnter}
-                    onMouseLeave={mLeave}
-                    onClick={
-                        () => {
-                            nav('/rtsim');
-                        }
-                    }>
-                    Scheduler Simulator
-                    <span className='bi bi-pc-display-horizontal'></span>
-                </button>
-                <div
-                    style={{
-                        marginTop: '2vh',
-                        color: 'white',
-                        fontSize: '1.1rem',
-                    }}>
-                    {getDescription(hover)}
+        <div className="home-page">
+            <section className="home-overview" aria-labelledby="home-title">
+                <div className="home-overview__brand">
+                    <MattediWorksLogo
+                        className="home-brand-wordmark"
+                        variant="wordmark"
+                        label={t.home.mattediWorksLogoAlt}
+                    />
+                    <span className="home-kicker">{t.home.catalogLabel}</span>
+                    <h1 id="home-title">{t.shell.productName}</h1>
+                    <p>{t.home.intro}</p>
                 </div>
-            </div>
-            {
-                width < 768 &&
-                <div className='m_open'>
-                    <div style={{
-                        display: 'flex',
-                        width: '100%',
-                        justifyContent: 'center',
-                        marginTop: '2vh',
-                        gap: '2vw',
-                    }}>
-                        <img src={pic} alt='terminal' className='home-terminal'
-                            style={{
-                                width: 'auto',
-                                height: '24vh',
-                                borderRadius: '10px',
-                            }}
-                        />
-                        <div style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            height: '100%',
-                            margin: '0px 5%',
-                            color: 'white',
-                            fontSize: '2em',
-                            textAlign: 'center',
-                        }}>
-                            <div
-                                onClick={() => { window.open('https://www.github.com/vtmattedi', '_blank'); }
-                                }
-                                style={{
-                                    fontSize: '2em',
-                                }}>
 
-                                <span className='bi bi-github'></span>
-                            </div>
-
-                            <div
-                                onClick={() => { window.open('https://www.linkedin.com/in/vitor-mattedi-dev/', '_blank'); }
-                                }
-                                style={{
-                                    fontSize: '2em',
-                                }}
-                            >
-                                <span className='bi bi-linkedin'
-                                    style={{ color: '#0e76a8' }}></span>
-
-
-
-                            </div>
+                <section className="home-engine-panel" aria-labelledby="home-engine-title">
+                    <div className="home-engine-panel__title">
+                        <span className={engineProject.iconClass} aria-hidden="true"></span>
+                        <div>
+                            <span className="home-kicker">{engineProject.label}</span>
+                            <h2 id="home-engine-title">{engineProject.name}</h2>
                         </div>
                     </div>
-                    <span className='m_cardText'
-                        style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            height: '100%',
-                            margin: '0px 5%',
-                            color: 'white',
-                            fontSize: '1.5em',
-                            textAlign: 'center',
-                        }}>
-                        Dev | Engineering Student
-                    </span>
+                    <p>{engineProject.summary}</p>
+                    <ul className="home-tag-list" aria-label={`${engineProject.name} capabilities`}>
+                        {engineProject.tags.map((tag) => (
+                            <li key={tag}>{tag}</li>
+                        ))}
+                    </ul>
+                    <ul className="home-engine-highlights">
+                        {engineProject.highlights.map((highlight) => (
+                            <li key={highlight}>{highlight}</li>
+                        ))}
+                    </ul>
+                </section>
+            </section>
+
+            <section className="home-catalog" aria-labelledby="home-catalog-title">
+                <div className="home-section-heading">
+                    <h2 id="home-catalog-title">{t.home.appsTitle}</h2>
+                    <p>{t.home.appsIntro}</p>
                 </div>
-            }
+                <div className="home-project-grid">
+                    {terminalProjects.map((project) => (
+                        <article className="home-project-card" key={project.id} aria-labelledby={`${project.id}-title`}>
+                            <div className="home-project-card__media">
+                                <img src={project.primaryImage} alt={`${project.screenshotAlt} preview`} />
+                            </div>
+                            <div className="home-project-card__body">
+                                <div>
+                                    <h3 id={`${project.id}-title`}>{project.name}</h3>
+                                    <p>{project.description}</p>
+                                </div>
+                                <ul className="home-tag-list" aria-label={`${project.name} capabilities`}>
+                                    {project.tags.map((tag) => (
+                                        <li key={tag}>{tag}</li>
+                                    ))}
+                                </ul>
+                                <div className="home-project-card__actions">
+                                    <button
+                                        type="button"
+                                        className="home-project-card__launch"
+                                        onClick={() => nav(project.routePath)}
+                                    >
+                                        <span className={project.iconClass} aria-hidden="true"></span>
+                                        {project.ctaLabel}
+                                    </button>
+                                    <a
+                                        className="home-project-card__source"
+                                        href={project.sourceUrl}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label={project.sourceAria}
+                                    >
+                                        <span className="bi bi-github" aria-hidden="true"></span>
+                                        {project.sourceLabel}
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    ))}
+                </div>
+            </section>
+
+            <footer className="home-footer" aria-label={t.home.footerLabel}>
+                <MattediWorksLogo
+                    className="home-footer__mark"
+                    variant="wordmark"
+                    decorative
+                />
+                <nav className="home-footer__links" aria-label={t.home.footerSocialLabel}>
+                    {socialLinks.map((link) => (
+                        <a
+                            key={link.href}
+                            className="home-footer__link"
+                            href={link.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            aria-label={link.label}
+                            title={link.label}
+                        >
+                            <span className={link.iconClass} aria-hidden="true"></span>
+                        </a>
+                    ))}
+                </nav>
+            </footer>
         </div>
     );
 };

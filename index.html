@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark light" />
+  <meta name="theme-color" content="#101317" />
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eef3f6" />
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#101317" />
+  <meta
+    name="description"
+    content="Terminal Applications by MattediWorks hosts browser ports of Console Adventure, RTSim, and the Terminal Engine runtime work behind them."
+  />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="MattediWorks" />
+  <meta name="application-name" content="Terminal Applications" />
+  <meta name="apple-mobile-web-app-title" content="Terminal Applications" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <link rel="canonical" href="https://terminal.mattediworks.com/" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/svg+xml" href="/mattediworks-icon.svg" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta property="og:site_name" content="Terminal Applications" />
+  <meta property="og:title" content="Terminal Applications" />
+  <meta
+    property="og:description"
+    content="MattediWorks browser-hosted terminal apps: Console Adventure, RTSim, and Terminal Engine runtime work."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://terminal.mattediworks.com/" />
+  <meta property="og:image" content="https://terminal.mattediworks.com/logo512.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta property="og:image:alt" content="MattediWorks logo for Terminal Applications" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Terminal Applications" />
+  <meta
+    name="twitter:description"
+    content="Browser-hosted terminal apps from MattediWorks, powered by React and xterm.js."
+  />
+  <meta name="twitter:image" content="https://terminal.mattediworks.com/logo512.png" />
+  <meta name="twitter:image:alt" content="MattediWorks logo for Terminal Applications" />
+  <script>
+    (() => {
+      const storageKey = 'terminal-applications-locale';
+      const validLocales = ['en', 'pt-BR'];
+      let locale = 'en';
+
+      try {
+        const storedLocale = window.localStorage.getItem(storageKey);
+        if (validLocales.includes(storedLocale)) {
+          locale = storedLocale;
+        } else {
+          const languages = navigator.languages?.length ? navigator.languages : [navigator.language];
+          locale = languages.some((language) => language?.toLowerCase().startsWith('pt')) ? 'pt-BR' : 'en';
+        }
+      } catch {
+        locale = 'en';
+      }
+
+      document.documentElement.lang = locale;
+    })();
+  </script>
+  <script>
+    (() => {
+      const storageKey = 'terminal-applications-theme';
+      const validThemes = ['light', 'dark', 'system'];
+      let theme = 'system';
+
+      try {
+        const storedTheme = window.localStorage.getItem(storageKey);
+        theme = validThemes.includes(storedTheme) ? storedTheme : 'system';
+      } catch {
+        theme = 'system';
+      }
+
+      const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+      const resolvedTheme = theme === 'system' ? (prefersDark ? 'dark' : 'light') : theme;
+      const root = document.documentElement;
+
+      root.dataset.theme = resolvedTheme;
+      root.dataset.themePreference = theme;
+      root.classList.add(resolvedTheme);
+      root.style.colorScheme = resolvedTheme;
+    })();
+  </script>
+  <title>Terminal Applications</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+  <script type="module" src="/src/index.jsx"></script>
+</body>
+
+</html>
